@@ -74,7 +74,7 @@ Esegui questo comando 5 volte per ottenere:
 1. **Source Directory**: `/` (root del repository)
 2. **Build Command**: `npm install && npm run build`
 3. **Run Command**: `npm start`
-4. **HTTP Port**: `1337`
+4. **HTTP Port**: usa la porta della piattaforma (tipicamente `8080`) e **non** forzare `1337`
 5. **Environment Variables**:
 
    ```
@@ -87,8 +87,9 @@ Esegui questo comando 5 volte per ottenere:
    DATABASE_USERNAME=${brinmalte-db.USERNAME}
    DATABASE_PASSWORD=${brinmalte-db.PASSWORD}
    DATABASE_SSL=true
+   DATABASE_SCHEMA=strapi
    HOST=0.0.0.0
-   PORT=1337
+   # NON impostare PORT: lo imposta la piattaforma (es. 8080)
    APP_KEYS=<tua_chiave_generata>
    API_TOKEN_SALT=<tua_chiave_generata>
    ADMIN_JWT_SECRET=<tua_chiave_generata>
@@ -103,7 +104,7 @@ Esegui questo comando 5 volte per ottenere:
 Aggiungi queste routes:
 - **Route**: `/api` → Backend Service
 - **Route**: `/admin` → Backend Service
-- **Route**: `/_health` → Backend Service (per health checks)
+- **Route**: `/health` → Backend Service (per health checks)
 
 ### Step 7: Deploy
 

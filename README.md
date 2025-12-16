@@ -37,23 +37,26 @@ npm run develop
 
 Strapi sarà disponibile su `http://localhost:1337`
 
-### Con PostgreSQL (Locale)
+### Con PostgreSQL (Locale, Docker - consigliato)
 
-Se vuoi usare PostgreSQL anche in locale:
+Se vuoi usare PostgreSQL anche in locale (stesso DB engine della produzione), avvialo con Docker:
 
 ```bash
 # Avvia PostgreSQL con Docker
-docker-compose up -d
+docker compose up -d
 
 # Configura .env
 DATABASE_CLIENT=postgres
-DATABASE_HOST=localhost
+DATABASE_HOST=127.0.0.1
 DATABASE_PORT=5432
 DATABASE_NAME=brinmalte
 DATABASE_USERNAME=strapi
 DATABASE_PASSWORD=strapi
 DATABASE_SSL=false
+DATABASE_SCHEMA=strapi
 ```
+
+> Nota: il `docker-compose.yml` crea già lo schema `strapi` e imposta `search_path` per l'utente `strapi`.
 
 ## 📦 Comandi Disponibili
 
@@ -104,14 +107,16 @@ DATABASE_NAME=brinmalte
 DATABASE_USERNAME=your-username
 DATABASE_PASSWORD=your-password
 DATABASE_SSL=true
+DATABASE_SCHEMA=strapi
 HOST=0.0.0.0
-PORT=1337
 APP_KEYS=genera_chiavi_sicure
 API_TOKEN_SALT=genera_salt_sicuro
 ADMIN_JWT_SECRET=genera_secret_sicuro
 TRANSFER_TOKEN_SALT=genera_salt_sicuro
 JWT_SECRET=genera_secret_sicuro
 ```
+
+> Su DigitalOcean App Platform **non** impostare `PORT=1337`: lascia che la piattaforma imposti `PORT` (di solito `8080`) e Strapi lo userà automaticamente.
 
 **⚠️ Importante**: Genera chiavi sicure per produzione usando:
 ```bash
