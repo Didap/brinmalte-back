@@ -1,5 +1,4 @@
 export default [
-  'global::health',
   'strapi::logger',
   'strapi::errors',
   'strapi::security',

@@ -3,6 +3,9 @@ services:
     image: postgres:16-alpine
     container_name: brinmalte-postgres
     restart: unless-stopped
+    labels:
+      - "com.docker.compose.project=brinmalte-backend"
+      - "com.docker.compose.service=postgres"
     environment:
       POSTGRES_DB: brinmalte
       POSTGRES_USER: strapi

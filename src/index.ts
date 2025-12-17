@@ -1,4 +1,4 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi';
 
 export default {
   /**
@@ -16,5 +16,21 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    // Health check endpoint for infrastructure monitoring
+    strapi.server.routes([
+      {
+        method: 'GET',
+        path: '/health',
+        handler: async (ctx) => {
+          ctx.status = 200;
+          ctx.type = 'application/json';
+          ctx.body = { status: 'ok' };
+        },
+        config: {
+          auth: false,
+        },
+      },
+    ]);
+  },
 };
